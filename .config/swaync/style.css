@@ -1,0 +1,17 @@
+@import 'colors/mocha.css';
+@import 'themes/nova-dark/notifications.css';
+@import 'themes/nova-dark/central_control.css';
+
+.control-center .widget-notifications .empty-notifications image {
+    opacity: 0 !important;
+}
+
+/* 2. Tu código para el nuevo ícono (este está perfecto) */
+.control-center .widget-notifications .empty-notifications {
+    background-image: url("/home/enderdev/.config/swaync/icons/empty.png") !important;
+    background-position: center top !important;
+    background-repeat: no-repeat !important;
+    background-size: 80px 80px !important;
+    padding-top: 90px !important; 
+    margin-top: 20px !important;
+}

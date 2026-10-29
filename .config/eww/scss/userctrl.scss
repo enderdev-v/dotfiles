@@ -1,0 +1,258 @@
+
+.pfp{
+  box-shadow: 0 2px 3px 2px $overlay2;
+  background-image: url('./enderdev.png');
+  background-size: 90px;
+  background-position: 50% 35%;
+  background-repeat:no-repeat;
+  min-height: 90px;
+  min-width: 90px;
+  border-radius: 100%;
+  margin-right:20px;
+}
+
+.username{
+  font-size:30px;
+  color: $blue;
+}
+
+.uptime{
+  color: $subtext1;
+}
+
+.minicore-container{
+  margin-top:20px;
+  margin-bottom:5px;
+}
+
+.minicores{
+  padding:7px;
+}
+
+.C0,.C1,.C2,.C3{
+  margin:0px 7px;
+  padding:10px;
+  border-radius:15px;
+  box-shadow: 0 2px 3px 2px $overlay0;
+  background-color: rgba(0,0,0,0.28);
+  color: $sapphire;
+}
+
+.ctlpanel{
+  min-width:230px;
+  margin-top:10px;
+  border-radius:20px;
+  padding:5px;
+  background-color:$mantle;
+  font-family: "JetBrainsMono Nerd Font";
+  box-shadow: 0 2px 3px 2px $overlay0;
+}
+
+.shutdown{
+  color: $red;
+  transition:color 0.3s;
+  &:hover{
+    color: $maroon;
+  }
+}
+
+.logout{
+  color: $yellow;
+  transition:color 0.3s;
+  &:hover{
+    color: $maroon;
+  }
+}
+
+.lockscr{
+  color: $teal;
+  transition:color 0.3s;
+  &:hover{
+    color: $sky;
+  }
+}
+
+.reboot{
+  color: $mauve;
+  transition: color 0.3s;
+  &:hover{
+    color: $lavender;
+  }
+}
+
+.suspend{
+  color: $sapphire;
+  transition:color 0.3s;
+  &:hover{
+    color: $lavender;
+  }
+}
+
+.hibernate {
+  color: $pink;
+  transition: color 0.3s;
+  &:hover {
+    color: $lavender;
+  }
+}
+
+tooltip{
+  padding:10px;
+  border-radius:20px;
+  background-color: $crust;
+}
+
+.sysctl{
+  margin:0px 7px;
+  margin-top:17px;
+  padding:10px;
+  box-shadow: 0 2px 3px 2px $overlay1;
+  background-color: $crust;
+  min-width:370px;
+  border-radius:15px;
+}
+
+.sliderctl{
+  border-radius:15px;
+  box-shadow: 0 2px 3px 2px $overlay2;
+  background-color: $crust;
+  margin-left:20px;
+  margin-right:20px;
+  margin-top:20px;
+  margin-bottom:10px;
+}
+
+.monitor-container{
+  margin-bottom:6px;
+}
+
+.volume-slider{
+  margin-top:10px;
+  margin-left:13px;
+}
+
+.light-slider{
+  margin-bottom:10px;
+  margin-left:13px;
+}
+
+.vol trough {
+  all: unset;
+  background-color: $surface0;
+  box-shadow: 0 2px 3px 2px $overlay0;
+  border-radius: 50px;
+  min-height: 10px;
+  min-width: 250px;
+  margin: 0 20px 0 20px;
+}
+
+.vol trough highlight {
+  all: unset;
+  background-color: $mauve;
+  border-radius: 10px;
+}
+
+.volume-slider,.volume-short{
+  color: $mauve;
+}
+
+.lig trough {
+  all: unset;
+  background-color: $surface0;
+  box-shadow: 0 2px 3px 2px $overlay0;
+  border-radius: 50px;
+  min-height: 10px;
+  min-width: 250px;
+  margin: 0 20px 0 20px;
+}
+
+.lig trough highlight {
+  all: unset;
+  background-color:$yellow;
+  border-radius: 10px;
+}
+
+.light-slider{
+  color: $yellow;
+}
+
+.clear-container{
+  margin:6px 10px;
+}
+
+.nheader{
+  font-size:20px;
+  color: $lavender;
+}
+
+.clear{
+  color:rgb(230,100,100);
+  font-size:30px;
+  transition: color 0.3s;
+  &:hover{
+    color: $yellow;
+  }
+}
+
+.music-title{
+  margin-left:7px;
+  margin-right:7px;
+  margin-top:7px;
+}
+
+.music-thumbnail{
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    min-height: 6rem;
+    min-width: 6rem;
+    border-radius: 1rem;
+}
+
+.app-ico{
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    min-height: 2.5rem;
+    min-width: 2.5rem;
+}
+
+.main-title{
+  margin-top:15px;
+  margin-bottom:12px;
+  margin-left:15px;
+  font-size:20px;
+  color: $mauve; 
+  font-family: "Symbols Nerd Font", "Noto Sans CJK JP", monospace;
+}
+
+.artist{
+  color: $subtext1;
+  font-size:13px;
+  margin-left:15px;
+}
+
+.music-slider{
+  margin-top:10px;
+}
+
+.music-slider trough {
+  all: unset;
+  background-color: $overlay2;
+  box-shadow: 0 2px 3px 2px $surface1;
+  border-radius: 50px;
+  min-height: 5px;
+  min-width: 270px;
+  margin: 0 20px 0 20px;
+}
+
+.music-slider trough highlight {
+  all: unset;
+  background-color: $mauve;
+  border-radius: 10px;
+}
+
+.music-timer{
+  color: rgb(205,212,246);
+  margin:3px 20px;
+}

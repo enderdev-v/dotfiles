@@ -1,0 +1,165 @@
+(defvar btrev false)
+(defvar bthov false)
+(defvar btctlrev false)
+
+(defpoll btstatus :interval "1s" :initial "{\"icon\": \"󰂲\", \"name\": \"Disconnected\", \"strength\": 0}"
+    "./scripts/current-bt.sh" ;; [CREAR SCRIPT] - Debe devolver el JSON de estado
+)
+
+(defwidget bluetooth []
+    (box :class "wifi"
+        (eventbox :cursor "pointer"
+                  :onhover "./scripts/bt-delay.sh" ;; [CREAR SCRIPT] - Animación hover (opcional)
+                  :onhoverlost "bash -c '/usr/bin/eww update btrev=false && /usr/bin/eww update bthov=false'"
+                  :onclick "${ctlrev==true?"./scripts/usrctl.sh && ./scripts/btctl.sh":"./scripts/btctl.sh"}" ;; [CREAR SCRIPT] - Script que abre el menú
+                  (box :orientation "h"
+                       :space-evenly false
+                       (label :text "${btstatus.icon}")
+                       (label :class "space-wifi" :text "\\u00A0")
+                       (revealer :reveal {btrev || btctlrev ? true : false}
+                                 :transition "slideright"
+                                 :duration "350ms"
+                                 (box :class "wifi-type" :space-evenly false
+                                      (label :class "wifi-div" :text "|")
+                                      (label :limit-width 12 :text "${btstatus.name}")
+                                 )
+                       )
+                  )
+        )
+    )
+)
+
+(defpoll btdevices :interval "3s" 
+    "./scripts/getbt.sh" ;; [CREAR SCRIPT] - Debe devolver lista JSON de dispositivos
+)
+
+(defwidget bt_event []
+    (eventbox :class "shadow-container"
+              :onhoverlost "./scripts/btctl.sh" ;; [CREAR SCRIPT] - Cierra el menú al quitar el cursor
+              (box :orientation "v"
+                   :space-evenly false
+              (box :class "wifictl-container"
+                   :space-evenly false
+                   :orientation "v"
+                   (box :class "wifi-header"
+                        :space-evenly false
+                        (label :text "Bluetooth Manager")
+                   )
+                   (box :class "wifi-stats"
+                        :space-evenly false
+                        (label :text "STATUS : ")
+                        (label :class {btstatus.name == "Disconnected" ? "nocon" : "yescon"} 
+                               :limit-width 27
+                               :text {btstatus.name == "Disconnected" ? " Disconnected" : " Connected to ${btstatus.name}"})
+                   )
+                   (scroll :vscroll true
+                           :class "network-container"
+                           (box :orientation "v" :space-evenly false
+                                (for i in {btdevices}
+                                    (bt-option :name "${i.name}" :mac "${i.mac}" :inuse "${i.in_use}" :auto {i.autoconnect}) 
+                                )
+                           )
+                   )
+              )
+              (revealer :reveal {btconfigrev}
+                        :transition "slidedown"
+                        :duration "350ms"
+                        (eventbox :onhoverlost "/usr/bin/eww update btconfigrev=false"
+                                  (box :class "wifictl-container"
+                                       :space-evenly false
+                                       :orientation "v"
+                                       (box :class "swifi-header"
+                                            :space-evenly false
+                                            (label :text "${btnamerev}")
+                                       )
+                                       ;; --- CLASE 1: NO EMPAREJADO ---
+                                       (box :class "wifi-bcon"
+                                            :orientation "h"
+                                            :visible {btclass == "1" ? true : false}
+                                            (eventbox :cursor "pointer"
+                                                      :class "wifi-buttons"
+                                                      :height 30
+                                                      :onclick "/usr/bin/eww update btconfigrev=false && ./scripts/bt-pair-connect.sh '${btmacrev}'" ;; [CREAR SCRIPT]
+                                                      (label :text "Pair & Connect")
+                                            )
+                                       )
+                                       ;; --- CLASE 2: EMPAREJADO PERO DESCONECTADO ---
+                                       (box :orientation "h"
+                                            :spacing 10
+                                            :visible {btclass == "2" ? true : false}
+                                            :class "wifi-bcon"
+                                            (eventbox :cursor "pointer"
+                                                      :height 30
+                                                      :class "wifi-buttons"
+                                                      :onclick "/usr/bin/eww update btconfigrev=false && ./scripts/bt-connect.sh '${btmacrev}'" ;; [CREAR SCRIPT]
+                                                      (label :text "Connect")
+                                            )
+                                            (eventbox :cursor "pointer"
+                                                      :class "wifi-buttons"
+                                                      :onclick "/usr/bin/eww update btconfigrev=false && ./scripts/bt-remove.sh '${btmacrev}'" ;; [CREAR SCRIPT]
+                                                      (label :text "Remove")
+                                            )
+                                       )
+                                       ;; --- CLASE 3: CONECTADO ---
+                                       (box :orientation "h"
+                                            :spacing 10
+                                            :visible {btclass == "3" ? true : false}
+                                            :class "wifi-bcon"
+                                            (eventbox :cursor "pointer"
+                                                      :class "wifi-buttons"
+                                                      :onclick "/usr/bin/eww update btconfigrev=false && ./scripts/bt-disconnect.sh '${btmacrev}'" ;; [CREAR SCRIPT]
+                                                      :height 30
+                                                      (label :text "Disconnect")
+                                            )
+                                            (eventbox :cursor "pointer"
+                                                      :class "wifi-buttons"
+                                                      :onclick "/usr/bin/eww update btconfigrev=false && ./scripts/bt-remove.sh '${btmacrev}'" ;; [CREAR SCRIPT]
+                                                      (label :text "Remove")
+                                            )
+                                       )
+                                  )
+                        )
+              ))
+    )
+)
+
+(defvar btconfigrev false)
+(defvar btnamerev "")
+(defvar btmacrev "")
+(defvar btclass "")
+
+(defwidget bt-option [name mac auto inuse]
+    (eventbox :cursor "pointer"
+              :onclick "/usr/bin/eww update btconfigrev=false && /usr/bin/eww update btconfigrev=true && /usr/bin/eww update btclass=${auto == false ? 1 : (inuse == false ? 2 : 3)} && /usr/bin/eww update btnamerev='${name}' && /usr/bin/eww update btmacrev='${mac}'"
+              (box :class "wifi-option-box"
+                   :orientation "v"
+                   (box :class "wifi-ssid"
+                        :space-evenly false
+                        :orientation "h"
+                        (label :class {auto == false ? "wifi-ssid-01" : (inuse == false ? "wifi-ssid-02" : "wifi-ssid-03")}
+                               :limit-width 30 
+                               :text "${name}"
+                        )
+                   )
+               )
+    )
+)
+
+(defwindow btctl
+    :monitor 0
+    :stacking "overlay"
+    :focusable true
+    :geometry (geometry :anchor "top right"
+                        :x "5px"
+                        :y "-14px"
+                        :width "425px"
+                        :height "440px"
+    )
+    (expander :expanded true
+              (revealer :transition "slidedown"
+                        :reveal btctlrev
+                        :duration "350ms"
+                        (bt_event)
+              )
+    )
+)

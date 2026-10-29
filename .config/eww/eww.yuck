@@ -1,0 +1,99 @@
+(include "widgets/battery.yuck")
+(include "widgets/calendar.yuck")
+(include "widgets/notifications.yuck")
+(include "widgets/menu.yuck")
+(include "widgets/ram.yuck")
+(include "widgets/userctrl.yuck")
+(include "widgets/volume.yuck")
+(include "widgets/wifi.yuck")
+(include "widgets/workspaces.yuck")
+
+(defwidget bar []
+    (box :class "bar"
+         :orientation "h"
+         (box :halign "start"
+              :valign "center"
+              :spacing 10
+              :hexpand true ;;
+              :space-evenly false
+              (menu)
+              (workspaces)
+         )
+         (box :halign "center"
+              :valign "center"
+              :spacing 10
+              :hexpand true
+              :orientation "h"
+              (time :time get_time)
+         )
+         (box :halign "end"
+              :valign "center"
+              :hexpand true
+              :space-evenly false
+              :spacing 10
+              (box :space-evenly false
+                        :spacing 7
+                        (tray)
+                        (volume)
+                        (ram)
+                        (battery)
+                        (eventbox :onhoverlost "bash -c '/usr/bin/eww update keyrev=false && /usr/bin/eww update keyhov=false && /usr/bin/eww update wifirev=false && /usr/bin/eww update wifihov=false  && /usr/bin/eww update btrev=false && /usr/bin/eww update bthov=false'"
+                                  (wifi)
+                        )
+                        (eventbox :onhoverlost "bash -c '/usr/bin/eww update keyrev=false && /usr/bin/eww update keyhov=false && /usr/bin/eww update wifirev=false && /usr/bin/eww update wifihov=false  && /usr/bin/eww update btrev=false && /usr/bin/eww update bthov=false'"
+                                  (notifications)
+                        )
+              )
+              (divider)
+              (power)
+         )
+    )
+)
+
+(defvar trayrev false)
+
+(defwidget tray []
+    (box :orientation "h"
+         :space-evenly false
+         (revealer :reveal {trayrev}
+                   :transition "slideleft"
+                   (box :class "systray-shadow"
+                        (systray :space-evenly true :icon-size 16 :prepend-new true)
+                   )
+         )
+         (eventbox :class "tray-button"
+                   :width 20
+                   :onclick "${trayrev==false?"/usr/bin/eww update trayrev=true":"/usr/bin/eww update trayrev=false"}"
+                   :cursor "pointer"
+                   (label :class "tray-text" :text "${trayrev==false?"‹":"›"}")         
+         )
+    )
+)
+
+
+
+;;
+
+
+(defwidget power []
+    (box :class "power"
+         :orientation "h"
+         (eventbox :onclick '${wifictlrev == true ? "bash -c \"./scripts/wifictl.sh & sleep 0.233 && ./scripts/usrctl.sh &\"" : "./scripts/usrctl.sh"}'
+                   :cursor "pointer"
+                   :class "power-eventbox"
+                   (label :text "󰻃 ")
+         )
+    )
+)
+
+
+(defwindow bar_widget
+    :monitor 0
+    :stacking "fg"
+    :geometry (geometry :anchor "top center"
+                        :width "99.5%"
+                        :height "3.425%"
+    )
+    :exclusive true
+    (bar)
+)

@@ -1,0 +1,86 @@
+.ram-short{
+  color: $sapphire;
+}
+.sys{
+  margin:0px 10px;
+}
+
+
+.main-container, .music-container, .cpu-container{
+  box-shadow: 0 2px 3px 2px $surface2;
+  margin:5.5px;
+  border-radius: 20px;
+  min-width:385px;
+  background-color: $crust;
+  padding: 5px;
+}
+
+.profile,.graph-container{
+  min-width:370px;
+  margin:0px 7px;
+  margin-top:5px;
+  padding:10px;
+  border-radius:15px;
+  box-shadow: 0 2px 3px 2px $surface0;
+  background-color:$crust;
+}
+
+.graph-container{
+  color: $maroon;
+}
+
+.graph-display{
+  min-width:350px;
+}
+
+.main-temp{
+  border-radius:10px;
+  background-color:$mantle;
+  margin-left:3px;
+  padding:5px 10px;
+}
+
+.cpu-box, .ram-box, .disk-box{
+  margin:0px 10px;
+  border-radius:15px;
+  box-shadow: 0 2px 3px 2px $surface0;
+  background-color: $crust;
+}
+
+
+.cpu, .ram, .disk{
+  border-radius:100px;
+  margin-top:20px;
+}
+.cpu, .cpu01{ color: $red;}
+.ram, .ram01{ color: $blue; }
+.disk, .disk01{ color: $green; }
+.cpu02, .ram02, .disk02{ color: $subtext1 }
+
+.ramico, .diskico, .cpuico{
+  margin-right: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  font-size:20px;
+}
+
+.cpuico{
+  margin-left:20px;
+}
+
+.ramico, .diskico{
+  margin-left:25px;
+}
+
+.cpu, .ram, .disk{
+  background-color: $crust;
+}
+
+.cpu-text, .ram-text, .disk-text{
+  margin-bottom:10px;
+}
+
+.ram-text, .disk-text{
+  margin-top:3.2px;
+}
+

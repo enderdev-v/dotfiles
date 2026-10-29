@@ -1,0 +1,19 @@
+@define-color bg0 #1e1e2e; /* base */
+@define-color bg1 #181825; /* mantle */
+@define-color bg2 #11111b; /* crust */
+@define-color bg3 #313244; /* surface0 */
+@define-color bg4 #45475a; /* surface1 */
+
+@define-color red #f38ba8; /* red */
+@define-color orange #fab387; /* orange */
+@define-color yellow #f9e2af; /* yellow */
+@define-color green #a6e3a1; /* green */
+@define-color aqua #74c7ec; /* sapphire */
+@define-color blue #89b4fa; /* blue */
+@define-color purple #cba6f7; /* mauve */
+
+@define-color fg #cdd6f4; /* text */
+
+@define-color grey0 #6c7086; /* overlay0 */
+@define-color grey1 #7f849c; /* overlay1 */
+@define-color grey2 #9399b2; /* overlay2 */

@@ -1,0 +1,6 @@
+theme = "catpuccin-mocha"
+
+[runners.avahi]
+disabled = true
+[search]
+runners = ["applications", "runner", "calc", "symbols"]

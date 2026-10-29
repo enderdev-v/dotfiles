@@ -1,0 +1,85 @@
+@import "colors/mocha.scss";
+// Vengo de eww config files
+*{
+  all: unset;
+  font-family:"Monocraft Nerd Font";
+}
+
+.bar{
+  box-shadow: 0 2px 3px 1px $surface0;
+  border-radius: 10px;
+  background-color: $base;
+  padding: 5px;
+  margin:6.5px;
+}
+
+.menu{
+  margin-left:12px;
+}
+
+.menu-eventbox{
+  color: $blue;
+  transition: color 0.3s;
+  &:hover{
+    color: $text;
+  }
+}
+
+
+.ws{
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 16px;
+  color: $overlay0;
+}
+
+.div{
+  font-size:25px;
+  font-weight:100;
+  color: $surface0;
+}
+
+.free{
+  opacity:0.2;
+  transition: opacity 0.3s;
+  &:hover{
+    opacity:1;
+  }
+}
+
+.time-label{
+  background-color: $mantle;
+  color: $subtext0;
+  border-radius:20px;
+  transition: color 0.3s;
+  transition: background-color 0.3s;
+  &:hover{
+    color: $surface0;
+    background-color: $sky;
+  }
+}
+
+.keyboard,.battery,.volume-short, .ram-short{
+  background-color: $mantle;
+  padding:0px 13px;
+  border-radius:20px;
+  font-size:11px;
+  margin:3px 0px;
+}
+
+/*
+.volume-short{
+
+}
+*/
+
+@import "scss/battery.scss";
+@import "scss/calendar.scss";
+@import "scss/keyboard.scss";
+@import "scss/ram.scss";
+@import "scss/userctrl.scss";
+@import "scss/volume.scss";
+@import "scss/wifi.scss";
+
+
+
+

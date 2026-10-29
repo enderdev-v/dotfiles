@@ -1,0 +1,65 @@
+.power{
+  margin-right:10px;
+}
+
+.power-eventbox{
+  color:$maroon;
+  font-weight:bold;
+  font-size:20px;
+  font-family: "JetBrainsMono Nerd Font";
+  transition: color 0.3s;
+  &:hover{
+    color: $peach;
+  }
+}
+
+.BAT1, .BAT2, .BAT3{
+  color: $green;
+}
+
+.BAT4, .BAT5{
+  color: $red;
+}
+
+.CHARGING{
+  color: $yellow;
+}
+
+.batico-main{
+  margin-left:10px;
+  margin-right:15px;
+  font-size:50px;
+}
+
+.batico-short{
+  margin-right:6px;
+  margin-top:6px;
+}
+.volico{
+  color: $mauve;
+  margin-left:3px;
+}
+
+.bsht{
+  color: $subtext1;
+}
+
+.bat-percent{
+  font-size:20px;
+  color:$subtext1;
+}
+
+.bat-status{
+  color: $overlay2;
+}
+
+.bat-btn{
+  font-size:13px;
+}
+
+.divider-h{
+  min-height:3px;
+  margin:15px 5px;
+  background-color: $overlay0;
+}
+

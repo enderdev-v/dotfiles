@@ -1,0 +1,20 @@
+.keyboard{
+  color: $mauve;
+}
+
+.kb-div,.wifi-div{
+  margin:0px 3px;
+}
+
+.kb-type,.wifi-type{
+  color: $subtext1;
+}
+
+.mico{
+  font-size:30px;
+  margin-left:10px;
+  transition:color 0.3s;
+  &:hover{
+    color: $blue;
+  }
+}

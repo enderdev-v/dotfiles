@@ -1,0 +1,19 @@
+(defvar btrev false)
+(defvar bthov false)
+(defvar btctlrev false)
+
+
+(defwidget notifications []
+    (box :class "wifi"
+        (eventbox :cursor "pointer"
+                  :onhover "./scripts/bt-delay.sh"
+                  :onhoverlost "bash -c '/usr/bin/eww update btrev=false && /usr/bin/eww update bthov=false'"
+                  :onclick "./scripts/Notifys.sh" 
+                  (box :orientation "h"
+                       :space-evenly false
+                       (label :text "󰂚")
+                       (label :class "space-wifi" :text "\\u00A0")
+                  )
+        )
+    )
+)
